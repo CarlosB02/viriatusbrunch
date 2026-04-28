@@ -1,7 +1,26 @@
 // Server Component
 import Image from 'next/image';
 import Link from 'next/link';
-import { MapPin, Phone, AtSign, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, ArrowUp } from 'lucide-react';
+
+const Instagram = ({ size = 24, ...props }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -33,7 +52,7 @@ export default function Footer() {
             height={60}
             style={{ height: '60px', width: 'auto', marginBottom: '20px' }}
           />
-          <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem', lineHeight: '1.8' }}>
+          <p style={{ color: '#d1d1d1', fontSize: '0.95rem', lineHeight: '1.8' }}>
             Inspirado em Viseu, criado para todos os dias. Sabores frescos, momentos simples.
           </p>
         </div>
@@ -49,19 +68,20 @@ export default function Footer() {
               letterSpacing: '2px',
               fontFamily: 'var(--font-body)',
               fontWeight: '600',
+              marginTop: '0px'
             }}
           >
             Tudo sobre nós
           </h3>
           <ul style={{ display: 'grid', gap: '15px' }}>
             <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <a href="/#menu" style={{ color: 'var(--text-gray)', display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <a href="/#menu" style={{ color: '#d1d1d1', display: 'flex', alignItems: 'center', gap: '5px' }}>
                 De volta ao Menu <ArrowUp size={14} style={{ color: 'var(--primary)' }} />
               </a>
             </li>
-            <li><a href="/sobre-nos" style={{ color: 'var(--text-gray)' }}>Sobre Nós</a></li>
-            <li><a href="/contactos" style={{ color: 'var(--text-gray)' }}>Contactos</a></li>
-            <li><a href="/#galeria" style={{ color: 'var(--text-gray)' }}>Galeria</a></li>
+            <li><a href="/sobre-nos" style={{ color: '#d1d1d1' }}>Sobre Nós</a></li>
+            <li><a href="/contactos" style={{ color: '#d1d1d1' }}>Contactos</a></li>
+            <li><a href="/#galeria" style={{ color: '#d1d1d1' }}>Galeria</a></li>
           </ul>
         </nav>
 
@@ -80,32 +100,33 @@ export default function Footer() {
               letterSpacing: '2px',
               fontFamily: 'var(--font-body)',
               fontWeight: '600',
+              marginTop: '0px'
             }}
           >
             Reserva já
           </h3>
           <ul style={{ display: 'grid', gap: '20px' }}>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '15px', color: 'var(--text-gray)' }}>
+            <li style={{ display: 'flex', alignItems: 'center', gap: '15px', color: '#d1d1d1' }}>
               <Phone size={20} style={{ color: 'var(--primary)', flexShrink: 0 }} aria-hidden="true" />
               <a href="tel:+351963546006">963 546 006</a>
             </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '15px', color: 'var(--text-gray)' }}>
-              <AtSign size={20} style={{ color: 'var(--primary)', flexShrink: 0 }} aria-hidden="true" />
+            <li style={{ display: 'flex', alignItems: 'center', gap: '15px', color: '#d1d1d1' }}>
+              <Instagram size={20} style={{ color: 'var(--primary)', flexShrink: 0 }} aria-hidden="true" />
               <a
                 href="https://instagram.com/viriatusbrunch.viseu"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                @viriatusbrunch.viseu
+                viriatusbrunch.viseu
               </a>
             </li>
-            <li style={{ display: 'flex', alignItems: 'flex-start', gap: '15px', color: 'var(--text-gray)' }}>
+            <li style={{ display: 'flex', alignItems: 'flex-start', gap: '15px', color: '#d1d1d1' }}>
               <MapPin size={20} style={{ color: 'var(--primary)', marginTop: '3px', flexShrink: 0 }} aria-hidden="true" />
               <a
                 href="https://maps.google.com/?q=Rua+Gaspar+Barreiros+24+Viseu"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: 'var(--text-gray)' }}
+                style={{ color: '#d1d1d1' }}
               >
                 Rua Gaspar Barreiros 24, Viseu 3500-222
               </a>
@@ -124,7 +145,7 @@ export default function Footer() {
           textAlign: 'center',
         }}
       >
-        <p style={{ color: 'var(--text-gray)', fontSize: '0.8rem' }}>
+        <p style={{ color: '#d1d1d1', fontSize: '0.8rem' }}>
           © {year}{' '}
           <a href="#menu" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>
             Viriatus Brunch

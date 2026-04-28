@@ -101,7 +101,6 @@ export default function Navbar() {
       <button
         className="mobile-toggle"
         style={{ 
-          display: 'none', 
           color: 'var(--primary)', 
           zIndex: 60, // Above the overlay
           position: 'relative'

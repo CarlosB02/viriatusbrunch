@@ -24,7 +24,7 @@ const values = [
 
 export default function About() {
   return (
-    <section id="sobre" aria-label="Sobre o Viriatus Brunch" style={{ padding: '100px 0', overflow: 'hidden' }}>
+    <section id="sobre" aria-label="Sobre o Viriatus Brunch" style={{ padding: '100px 0 30px 0', overflow: 'hidden' }}>
       <h2 className="section-title">A Nossa Essência</h2>
 
       <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '80px', alignItems: 'center' }}>
@@ -89,10 +89,11 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* Values Grid */}
+      {/* Values Grid / Carousel */}
       <div
+        className="values-carousel"
         style={{
-          marginTop: '100px',
+          marginTop: '60px',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '40px',
@@ -111,7 +112,8 @@ export default function About() {
               backgroundColor: 'rgba(255,255,255,0.03)',
               borderRadius: '20px',
               border: '1px solid rgba(208,168,75,0.1)',
-              textAlign: 'center'
+              textAlign: 'center',
+              scrollSnapAlign: 'center'
             }}
           >
             <div style={{ color: 'var(--primary)', marginBottom: '20px', display: 'inline-block' }}>

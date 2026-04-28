@@ -64,7 +64,7 @@ export default function Gallery() {
   }, [activeTab]);
 
   return (
-    <section id="galeria" aria-label="Galeria Viriatus Brunch">
+    <section id="galeria" aria-label="Galeria Viriatus Brunch" style={{ paddingTop: '20px' }}>
       <h2 className="section-title">O teu Viriatus</h2>
 
       {/* Tabs */}
