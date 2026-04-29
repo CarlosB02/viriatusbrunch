@@ -12,160 +12,164 @@ import {
   IceCream,
   Beer,
   Egg,
-  Wine,
   Soup,
   Users,
-  Info
+  Info,
+  Hamburger,
+  Salad,
+  Croissant,
+  Dessert,
+  CupSoda,
+  SquareMenu,
+  Waves,
+  Flame
 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
-const menuData = [
+const getMenuData = (t) => [
   {
-    name: 'Tostas',
+    name: t('menu.categories.tostas'),
     icon: <Sandwich size={20} />,
     items: [
-      { name: 'Frango', allergens: '🌾🥛', price: '9,5', description: 'Tosta, Pickles Couve Roxa, Cream Cheese, Frango Grelhado, Molho Barbecue Caseiro' },
-      { name: 'Cogumelos & Figos', allergens: '🌾🥛', price: '13,5', description: 'Tosta, Cogumelos, Compota de Figos e Burrata' },
-      { name: 'Pesto & Grão', allergens: '🌾🥛🥜', price: '5', description: 'Tosta, abacate, pesto e humus de beterraba' },
-      { name: 'Salmão', allergens: '🌾🥛🥚🐟', price: '13,5', description: 'Tosta, Cream Cheese, Polpa de Maracujá, Ovos Escalfados e Salmão Fumado' },
-      { name: 'Atum', allergens: '🌾🥛', price: '8', description: 'Tosta, Pasta de Atum, Tomate Seco e Queijo' },
-      { name: 'Mista', allergens: '🌾', price: '3,75', description: '' },
-      { name: 'Torrada', allergens: '🌾', price: '2,2', description: '' },
+      { name: t('menu.items.frango') || 'Frango', allergens: '🌾🥛', price: '9,5', description: t('menu.desc.frango') || 'Tosta, Pickles Couve Roxa, Cream Cheese, Frango Grelhado, Molho Barbecue Caseiro' },
+      { name: t('menu.items.cogumelos_figos') || 'Cogumelos & Figos', allergens: '🌾🥛', price: '13,5', description: t('menu.desc.cogumelos_figos') || 'Tosta, Cogumelos, Compota de Figos e Burrata' },
+      { name: t('menu.items.pesto_grao') || 'Pesto & Grão', allergens: '🌾🥛🥜', price: '5', description: t('menu.desc.pesto_grao') || 'Tosta, abacate, pesto e humus de beterraba' },
+      { name: t('menu.items.salmao') || 'Salmão', allergens: '🌾🥛🥚🐟', price: '13,5', description: t('menu.desc.salmao') || 'Tosta, Cream Cheese, Polpa de Maracujá, Ovos Escalfados e Salmão Fumado' },
+      { name: t('menu.items.atum') || 'Atum', allergens: '🌾🥛', price: '8', description: t('menu.desc.atum') || 'Tosta, Pasta de Atum, Tomate Seco e Queijo' },
+      { name: t('menu.items.mista') || 'Mista', allergens: '🌾', price: '3,75', description: '' },
+      { name: t('menu.items.torrada') || 'Torrada', allergens: '🌾', price: '2,2', description: '' },
     ]
   },
   {
-    name: 'Hambúrgueres Artesanais',
-    icon: <Utensils size={20} />,
+    name: t('menu.categories.burgers'),
+    icon: <Hamburger size={20} />,
     items: [
-      { name: 'Vegetariano', allergens: '🌾🥛', price: '8,5', description: 'Pão Hambúrguer, Alface, Tomate, Hambúrguer Grão Bico, Queijo Cheddar e Cebola Confitada' },
-      { name: 'Viriatus', allergens: '🌾🥛', price: '11,5', description: 'Pão Hambúrguer, Alface, Tomate, Carne Vitela, Queijo Cheddar e Cebola Confitada' },
-      { name: 'Crispy Chicken', allergens: '🌾🥛🥚', price: '10,3', description: 'Pão Hambúrguer, Hambúrguer de Frango, Bacon, Alface, Tomate e Cebola Confitada' },
+      { name: t('menu.items.vegetariano') || 'Vegetariano', allergens: '🌾🥛', price: '8,5', description: t('menu.desc.vegetariano') || 'Pão Hambúrguer, Alface, Tomate, Hambúrguer Grão Bico, Queijo Cheddar e Cebola Confitada' },
+      { name: 'Viriatus', allergens: '🌾🥛', price: '11,5', description: t('menu.desc.viriatus_burger') || 'Pão Hambúrguer, Alface, Tomate, Carne Vitela, Queijo Cheddar e Cebola Confitada' },
+      { name: 'Crispy Chicken', allergens: '🌾🥛🥚', price: '10,3', description: t('menu.desc.crispy_chicken') || 'Pão Hambúrguer, Hambúrguer de Frango, Bacon, Alface, Tomate e Cebola Confitada' },
     ]
   },
   {
     name: 'English Breakfast',
-    icon: <Coffee size={20} />,
+    icon: <Waves size={20} style={{ transform: 'rotate(90deg)' }} />,
     items: [
-      { name: 'English Breakfast', allergens: '🌾🥛🥚', price: '13,5', description: 'Torrada, Salsicha, Baked Beans, Ovos Estrelados, Presunto, Tomate Cherry Confitado e Cogumelos Salteados' },
+      { name: 'English Breakfast', allergens: '🌾🥛🥚', price: '13,5', description: t('menu.desc.english_breakfast') || 'Torrada, Salsicha, Baked Beans, Ovos Estrelados, Presunto, Tomate Cherry Confitado e Cogumelos Salteados' },
     ]
   },
   {
-    name: 'Saladas e Massas',
-    icon: <Soup size={20} />,
+    name: t('menu.categories.saladas_massas'),
+    icon: <Salad size={20} />,
     subcategories: [
       {
-        title: 'Saladas',
+        title: t('menu.sub.saladas') || 'Saladas',
         items: [
-          { name: 'Gambas', allergens: '🌾🧴🐚', price: '11', description: 'Base Folhas, Gambas, Abacate, Croutons, Molho de Maracujá e Manga' },
-          { name: 'Crispy Chicken', allergens: '🌾🥛', price: '8,5', description: 'Alface Iceberg, Frango Panado, Croutons, Bacon, Cebola Frita e Parmesão' },
-          { name: 'Vegetariana', allergens: '🌾⚗️', price: '8,5', description: 'Base Folhas, Hortelã, Pepino, Tomate Cherry, Molho Mostarda e Mel, Croutons e Almôndegas Grão de Bico' },
-          { name: 'Cesar', allergens: '🌾🥛🧴', price: '8,5', description: 'Base de Folhas, Tomate Cherry, Croutons, Frango, Molho Cesar e Parmesão Ralado' },
+          { name: t('menu.items.gambas') || 'Gambas', allergens: '🌾🧴🐚', price: '11', description: t('menu.desc.gambas_salada') || 'Base Folhas, Gambas, Abacate, Croutons, Molho de Maracujá e Manga' },
+          { name: 'Crispy Chicken', allergens: '🌾🥛', price: '8,5', description: t('menu.desc.crispy_salada') || 'Alface Iceberg, Frango Panado, Croutons, Bacon, Cebola Frita e Parmesão' },
+          { name: t('menu.items.vegetariana') || 'Vegetariana', allergens: '🌾⚗️', price: '8,5', description: t('menu.desc.vegetariana_salada') || 'Base Folhas, Hortelã, Pepino, Tomate Cherry, Molho Mostarda e Mel, Croutons e Almôndegas Grão de Bico' },
+          { name: 'Cesar', allergens: '🌾🥛🧴', price: '8,5', description: t('menu.desc.cesar_salada') || 'Base de Folhas, Tomate Cherry, Croutons, Frango, Molho Cesar e Parmesão Ralado' },
         ]
       },
       {
-        title: 'Massas',
+        title: t('menu.sub.massas') || 'Massas',
         items: [
-          { name: 'Cogumelos', allergens: '🌾🥛', price: '8', description: '' },
-          { name: 'Nero', allergens: '🌾🐚', price: '8', description: 'Spaghetti Negra, Alho e Gambas' },
-          { name: 'Viriatus', allergens: '🌾🥛🐚', price: '9', description: 'Massa, Molho Tomate, Bacon, Cebola Frita, Parmesão Ralado e Camarão' },
+          { name: t('menu.items.cogumelos') || 'Cogumelos', allergens: '🌾🥛', price: '8', description: '' },
+          { name: 'Nero', allergens: '🌾🐚', price: '8', description: t('menu.desc.nero_massa') || 'Spaghetti Negra, Alho e Gambas' },
+          { name: 'Viriatus', allergens: '🌾🥛🐚', price: '9', description: t('menu.desc.viriatus_massa') || 'Massa, Molho Tomate, Bacon, Cebola Frita, Parmesão Ralado e Camarão' },
         ]
       }
     ]
   },
   {
     name: 'French Toast',
-    icon: <Sandwich size={20} />,
+    icon: <Croissant size={20} />,
     items: [
-      { name: 'Viriatus', allergens: '🌾🥛🥚', price: '8', description: 'Pão Brioche, Cream Cheese, Presunto, Ovo Escalfado, Rúcula e Compota' },
-      { name: 'Salmão', allergens: '🌾🥛🐟🌱', price: '13,5', description: 'Pão Brioche, Abacate, Cream Cheese Aromatizado, Salmão Fumado e Molho Teriaki' },
-      { name: 'Maçã', allergens: '🌾🥛', price: '7,5', description: 'c/ Gelado de Maçã Assada' },
+      { name: 'Viriatus', allergens: '🌾🥛🥚', price: '8', description: t('menu.desc.viriatus_french') || 'Pão Brioche, Cream Cheese, Presunto, Ovo Escalfado, Rúcula e Compota' },
+      { name: t('menu.items.salmao') || 'Salmão', allergens: '🌾🥛🐟🌱', price: '13,5', description: t('menu.desc.salmao_french') || 'Pão Brioche, Abacate, Cream Cheese Aromatizado, Salmão Fumado e Molho Teriaki' },
+      { name: t('menu.items.maca') || 'Maçã', allergens: '🌾🥛', price: '7,5', description: t('menu.desc.maca_french') || 'c/ Gelado de Maçã Assada' },
       { name: 'Tiramisu', allergens: '🌾🥛', price: '6,5', description: 'Tiramisu' },
-      { name: 'Frutos Vermelhos', allergens: '🌾🥛🥚', price: '6,5', description: 'French Toast, Frutos Vermelhos, Iogurte e Gelado de Frutos Vermelhos' },
+      { name: t('menu.items.frutos_vermelhos') || 'Frutos Vermelhos', allergens: '🌾🥛🥚', price: '6,5', description: t('menu.desc.frutos_french') || 'French Toast, Frutos Vermelhos, Iogurte e Gelado de Frutos Vermelhos' },
     ]
   },
   {
-    name: 'Ovos',
+    name: t('menu.categories.ovos'),
     icon: <Egg size={20} />,
-    note: '(Opção em Tosta, Croissant ou Bagel)',
+    note: t('menu.note.ovos') || '(Opção em Tosta, Croissant ou Bagel)',
     items: [
-      { name: 'Benedict', allergens: '🌾🥛🥚', price: '8', description: 'Pasta de Abacate, Ovos Escalfados, Bacon, Molho Holandês e Cebolinho' },
-      { name: 'Mexidos', allergens: '🌾🥚⚗️', price: '6', description: 'Opção: Bacon ou Cogumelos ou Alheira' },
+      { name: 'Benedict', allergens: '🌾🥛🥚', price: '8', description: t('menu.desc.benedict') || 'Pasta de Abacate, Ovos Escalfados, Bacon, Molho Holandês e Cebolinho' },
+      { name: t('menu.items.mexidos') || 'Mexidos', allergens: '🌾🥚⚗️', price: '6', description: t('menu.desc.mexidos') || 'Opção: Bacon ou Cogumelos ou Alheira' },
     ]
   },
   {
     name: 'Menus',
-    icon: <Users size={20} />,
+    icon: <SquareMenu size={20} />,
     subcategories: [
       {
         title: 'Menu Brunch',
         items: [
-          { name: 'Viriatus', allergens: '🌾🥛🥚🥜🧴', price: '17', description: 'Ovos Mexidos c/ Bacon ou Cogumelos • Croissant Folhado e Torrada • Mini Bowl de Iogurte • Mini Panquecas • Fruta Laminada • Sumo do Dia ou Latte ou Cerveja • 1 fatia de queijo e fiambre (opcional: pasta de abacate +5)' },
-          { name: 'Rossio', allergens: '🌾🥛🥚🥜', price: '16', description: 'Tosta ou Ovos à Escolha • Mini Bowl de Iogurte • Mini Panquecas • Sumo do Dia ou Latte (Excepto Tosta de Cogumelos e Figos e Tosta de Salmão) Custo de +5' },
+          { name: 'Viriatus', allergens: '🌾🥛🥚🥜🧴', price: '17', description: t('menu.desc.brunch_viriatus') || 'Ovos Mexidos c/ Bacon ou Cogumelos • Croissant Folhado e Torrada • Mini Bowl de Iogurte • Mini Panquecas • Fruta Laminada • Sumo do Dia ou Latte ou Cerveja • 1 fatia de queijo e fiambre (opcional: pasta de abacate +5)' },
+          { name: 'Rossio', allergens: '🌾🥛🥚🥜', price: '16', description: t('menu.desc.brunch_rossio') || 'Tosta ou Ovos à Escolha • Mini Bowl de Iogurte • Mini Panquecas • Sumo do Dia ou Latte (Excepto Tosta de Cogumelos e Figos e Tosta de Salmão) Custo de +5' },
         ]
       },
       {
         title: 'Menu Kids',
-        note: 'Até aos 12 anos (inclui: Sumo do Dia + Bola de Gelado)',
+        note: t('menu.note.kids') || 'Até aos 12 anos (inclui: Sumo do Dia + Bola de Gelado)',
         items: [
-          { name: 'Mini Bitoque', allergens: '🥚', price: '10', description: 'Bife de Frango, Ovo Estrelado e Chips de Batata' },
-          { name: 'Chicken Kids', allergens: '🌾🥚', price: '10', description: 'Bife de Frango Panado com Chips de Batata' },
-          { name: 'Mini Hambúrguers', allergens: '🌾🥛⚗️', price: '12', description: 'Pão, Carne Vitela, Queijo e Chips Batata' },
+          { name: 'Mini Bitoque', allergens: '🥚', price: '10', description: t('menu.desc.bitoque_kids') || 'Bife de Frango, Ovo Estrelado e Chips de Batata' },
+          { name: 'Chicken Kids', allergens: '🌾🥚', price: '10', description: t('menu.desc.chicken_kids') || 'Bife de Frango Panado com Chips de Batata' },
+          { name: 'Mini Hambúrguers', allergens: '🌾🥛⚗️', price: '12', description: t('menu.desc.burgers_kids') || 'Pão, Carne Vitela, Queijo e Chips Batata' },
         ]
       }
     ]
   },
   {
     name: 'Tacos',
-    icon: <Pizza size={20} />,
+    icon: <Flame size={20} />,
     items: [
-      { name: 'Frango', allergens: '🌾🌱', price: '3,5', description: '' },
-      { name: 'Camarão', allergens: '🌾🌱🐚', price: '4,5', description: '' },
+      { name: t('menu.items.frango') || 'Frango', allergens: '🌾🌱', price: '3,5', description: '' },
+      { name: t('menu.items.camarao') || 'Camarão', allergens: '🌾🌱🐚', price: '4,5', description: '' },
     ]
   },
   {
-    name: 'Acompanhamentos',
+    name: t('menu.categories.acompanhamentos'),
     icon: <Utensils size={20} />,
     items: [
-      { name: 'Chips de Batata Doce', allergens: '', price: '3,5', description: '' },
-      { name: 'Chips de Batata', allergens: '', price: '2,5', description: '' },
-      { name: 'Chips c/ Cheddar e Bacon', allergens: '🥛⚗️', price: '3,8', description: '' },
-      { name: 'Sopa', allergens: '🌾🌱', price: '2,50', description: '' },
+      { name: t('menu.items.chips_doce') || 'Chips de Batata Doces', allergens: '', price: '3,5', description: '' },
+      { name: t('menu.items.chips_batata') || 'Chips de Batata', allergens: '', price: '2,5', description: '' },
+      { name: t('menu.items.chips_cheddar') || 'Chips c/ Cheddar e Bacon', allergens: '🥛⚗️', price: '3,8', description: '' },
+      { name: t('menu.items.sopa') || 'Sopa', allergens: '🌾🌱', price: '2,50', description: '' },
     ]
   },
   {
-    name: 'Para Partilhar',
+    name: t('menu.categories.partilhar'),
     icon: <Users size={20} />,
     items: [
       { name: 'Gambas à Brás', allergens: '🌾🥛🥚🐚', price: '9', description: '' },
-      { name: 'Ovos Rotos', allergens: '🌾🥛🥚', price: '8,5', description: '' },
-      { name: 'Shakshuka', allergens: '🌾🥚', price: '9', description: 'Tomatada com Pimentos e Ovos Escalfados' },
+      { name: t('menu.items.ovos_rotos') || 'Ovos Rotos', allergens: '🌾🥛🥚', price: '8,5', description: '' },
+      { name: 'Shakshuka', allergens: '🌾🥚', price: '9', description: t('menu.desc.shakshuka') || 'Tomatada com Pimentos e Ovos Escalfados' },
       { name: 'Brás de Alheira', allergens: '🌾🥚⚗️', price: '8', description: '' },
       { name: 'Burrata', allergens: '🌾🥛🥚', price: '9,5', description: '' },
     ]
   },
   {
-    name: 'Bebidas',
-    icon: <Beer size={20} />,
+    name: t('menu.categories.bebidas'),
+    icon: <CupSoda size={20} />,
     subcategories: [
       {
-        title: 'Bebidas',
+        title: t('menu.categories.bebidas'),
         items: [
           { name: 'Sangria Maracujá 1L', allergens: '', price: '17', description: '' },
           { name: 'Sangria Frutos Vermelhos', allergens: '', price: '16', description: '' },
-          { name: 'Refrigerantes', allergens: '', price: '2,50', description: '' },
-          { name: 'Água 0.75L', allergens: '', price: '1,8', description: '' },
-          { name: 'Água 0.375L', allergens: '', price: '1,5', description: '' },
-          { name: 'Água c/ Gás', allergens: '', price: '1,7', description: '' },
-          { name: 'Água c/ Gás Sabores', allergens: '', price: '2', description: '' },
-          { name: 'Super Bock 33cl', allergens: '', price: '2', description: '' },
-          { name: 'Super Bock Stout 33cl', allergens: '', price: '2,5', description: '' },
-          { name: 'Cerveja Artesanal', allergens: '', price: '5,5', description: '' },
-          { name: 'Cerveja s/ àlcool', allergens: '', price: '2', description: '' },
+          { name: t('menu.items.refrigerantes') || 'Refrigerantes', allergens: '', price: '2,50', description: '' },
+          { name: t('menu.items.agua') || 'Água 0.75L', allergens: '', price: '1,8', description: '' },
+          { name: t('menu.items.agua_gas') || 'Água c/ Gás', allergens: '', price: '1,7', description: '' },
+          { name: t('menu.items.cerveja_artesanal') || 'Cerveja Artesanal', allergens: '', price: '5,5', description: '' },
+          { name: t('menu.items.cerveja_sem_alcool') || 'Cerveja s/ àlcool', allergens: '', price: '2', description: '' },
           { name: 'Somersby', allergens: '', price: '2,7', description: '' },
         ]
       },
       {
         title: 'Smoothies',
-        items: [{ name: 'Frutos Vermelhos', allergens: '🥛', price: '4', description: '' }]
+        items: [{ name: t('menu.items.frutos_vermelhos') || 'Frutos Vermelhos', allergens: '🥛', price: '4', description: '' }]
       },
       {
         title: 'Cocktails',
@@ -177,97 +181,95 @@ const menuData = [
         ]
       },
       {
-        title: 'Cafetaria',
+        title: t('menu.sub.cafetaria') || 'Cafetaria',
         items: [
           { name: 'Expresso/Descafeinado', allergens: '', price: '1', description: '' },
           { name: 'Expresso Pingado', allergens: '🥛', price: '1,20', description: '' },
           { name: 'Caramelo Machiatto', allergens: '🥛', price: '3,50', description: '' },
           { name: 'Latte Machiatto', allergens: '🥛', price: '3', description: '' },
           { name: 'Cappucino', allergens: '🥛', price: '2,50', description: '' },
-          { name: 'Cappucino de Caramelo', allergens: '🥛', price: '2,70', description: '' },
           { name: 'Café Latte', allergens: '🥛', price: '2', description: '' },
           { name: 'Café Americano', allergens: '', price: '1,80', description: '' },
           { name: 'Expresso Duplo', allergens: '', price: '2', description: '' },
           { name: 'Cevada', allergens: '🌾', price: '1', description: '' },
-          { name: 'Cevada Dupla', allergens: '🌾', price: '1,5', description: '' },
           { name: 'Mocha', allergens: '🥛', price: '3,50', description: '' },
-          { name: 'Chá', allergens: '', price: '1,50', description: '' },
-          { name: 'Chocolate Quente', allergens: '🥛🌱', price: '3,5', description: '' },
-          { name: 'Leite Aveia', allergens: '🥛', price: '+0,50', description: '' },
-          { name: 'Leite s/ Lactose', allergens: '', price: '+0,50', description: '' },
+          { name: t('menu.items.cha') || 'Chá', allergens: '', price: '1,50', description: '' },
+          { name: t('menu.items.chocolate_quente') || 'Chocolate Quente', allergens: '🥛🌱', price: '3,5', description: '' },
+          { name: t('menu.items.leite_aveia') || 'Leite Aveia', allergens: '🥛', price: '+0,50', description: '' },
+          { name: t('menu.items.leite_sem_lactose') || 'Leite s/ Lactose', allergens: '', price: '+0,50', description: '' },
         ]
       },
       {
-        title: 'Sumos Naturais',
+        title: t('menu.sub.sumos') || 'Sumos Naturais',
         items: [
-          { name: 'Limonada', allergens: '', price: '3', description: '' },
-          { name: 'Sumo do Dia', allergens: '', price: '3,30', description: '' },
-          { name: 'Sumo de Laranja', allergens: '', price: '3,50', description: '' },
-          { name: 'Sumo de Ananás & Hortelã', allergens: '', price: '4,20', description: '' },
-          { name: 'Sumo Verde (fins-de-semana)', allergens: '', price: '4', description: '' },
+          { name: t('menu.items.limonada') || 'Limonada', allergens: '', price: '3', description: '' },
+          { name: t('menu.items.sumo_dia') || 'Sumo do Dia', allergens: '', price: '3,30', description: '' },
+          { name: t('menu.items.sumo_laranja') || 'Sumo de Laranja', allergens: '', price: '3,50', description: '' },
+          { name: t('menu.items.sumo_ananâs') || 'Sumo de Ananás & Hortelã', allergens: '', price: '4,20', description: '' },
+          { name: t('menu.items.sumo_verde') || 'Sumo Verde (fins-de-semana)', allergens: '', price: '4', description: '' },
         ]
       }
     ]
   },
   {
-    name: 'Sobremesas',
+    name: t('menu.categories.sobremesas'),
     icon: <IceCream size={20} />,
     subcategories: [
       {
-        title: 'Sobremesas',
+        title: t('menu.categories.sobremesas'),
         items: [
-          { name: 'Brownie Chocolate', allergens: '🌾🥛🥚🌱', price: '6', description: 'c/ Gelado' },
-          { name: 'French Toast Frutos Vermelhos', allergens: '🌾🥛🥚', price: '5,5', description: 'Frutos Vermelhos, Iogurte e Gelado' },
+          { name: t('menu.items.brownie') || 'Brownie Chocolate', allergens: '🌾🥛🥚🌱', price: '6', description: t('menu.desc.gelado') || 'c/ Gelado' },
+          { name: 'French Toast Frutos Vermelhos', allergens: '🌾🥛🥚', price: '5,5', description: t('menu.desc.french_frutos') || 'Frutos Vermelhos, Iogurte e Gelado' },
           { name: 'French Toast Tiramisu', allergens: '🌾🥛', price: '6,5', description: '' },
-          { name: 'French Toast Maçã', allergens: '🌾🥛', price: '7,5', description: 'c/ Gelado de Maçã Assada' },
+          { name: 'French Toast Maçã', allergens: '🌾🥛', price: '7,5', description: t('menu.desc.french_maca') || 'c/ Gelado de Maçã Assada' },
         ]
       },
       {
         title: 'Bowls',
         items: [
-          { name: 'Açaí', allergens: '🌾🥜', price: '10', description: 'Açaí, Granola e Fruta Variada' },
-          { name: 'Iogurte', allergens: '🌾🥛🥜', price: '7', description: 'Iogurte Natural, Granola, Fruta Variada e Mel' },
+          { name: 'Açaí', allergens: '🌾🥜', price: '10', description: t('menu.desc.acai') || 'Açaí, Granola e Fruta Variada' },
+          { name: t('menu.items.iogurte') || 'Iogurte', allergens: '🌾🥛🥜', price: '7', description: t('menu.desc.iogurte') || 'Iogurte Natural, Granola, Fruta Variada e Mel' },
         ]
       }
     ]
   },
   {
-    name: 'Panquecas',
-    icon: <IceCream size={20} />,
+    name: t('menu.categories.panquecas'),
+    icon: <Dessert size={20} />,
     items: [
-      { name: 'Natura', allergens: '', price: '6', description: 'Servido com Fruta Variada e Mel' },
-      { name: 'Banoffee', allergens: '🌾🥛🥚', price: '6,5', description: 'Creme Banoffee, Banana' },
-      { name: 'Avelã', allergens: '🌾🥛🥚🥜', price: '6,5', description: 'Creme de Avelã, Crumble de Amêndoa e Gelado de Baunilha' },
-      { name: 'Pistachio', allergens: '🌾🥛🥜', price: '7,5', description: 'Creme de Pistachio, Framboesa e Crumble de Pistachio' },
-      { name: 'Red Velvet', allergens: '🌾🥛🥚', price: '7,5', description: 'Massa Red Velvet, Creme Baunilha e Frutos Vermelhos' },
-      { name: 'Royal', allergens: '🌾🥛🥚🐟', price: '9,8', description: 'Pasta de Abacate, Salmão Fumado, Ovos Escalfados e Molho Holandês' },
+      { name: 'Natura', allergens: '', price: '6', description: t('menu.desc.natura_panqueca') || 'Servido com Fruta Variada e Mel' },
+      { name: 'Banoffee', allergens: '🌾🥛🥚', price: '6,5', description: t('menu.desc.banoffee_panqueca') || 'Creme Banoffee, Banana' },
+      { name: 'Avelã', allergens: '🌾🥛🥚🥜', price: '6,5', description: t('menu.desc.avela_panqueca') || 'Creme de Avelã, Crumble de Amêndoa e Gelado de Baunilha' },
+      { name: 'Pistachio', allergens: '🌾🥛🥜', price: '7,5', description: t('menu.desc.pistachio_panqueca') || 'Creme de Pistachio, Framboesa e Crumble de Pistachio' },
+      { name: 'Red Velvet', allergens: '🌾🥛🥚', price: '7,5', description: t('menu.desc.red_velvet_panqueca') || 'Massa Red Velvet, Creme Baunilha e Frutos Vermelhos' },
+      { name: 'Royal', allergens: '🌾🥛🥚🐟', price: '9,8', description: t('menu.desc.royal_panqueca') || 'Pasta de Abacate, Salmão Fumado, Ovos Escalfados e Molho Holandês' },
     ]
   },
   {
-    name: 'Alergénios',
+    name: t('menu.categories.alergenios'),
     icon: <Info size={20} />,
     isLegend: true,
     items: [
-      { name: 'Glúten', icon: '🌾' },
-      { name: 'Leite / Lactose', icon: '🥛' },
-      { name: 'Amendoim', icon: '🥜' },
-      { name: 'Peixes', icon: '🐟' },
-      { name: 'Ovos', icon: '🥚' },
-      { name: 'Moluscos', icon: '🐚' },
-      { name: 'Sulfitos', icon: '⚗️' },
-      { name: 'Oleoginosas', icon: '🌰' },
-      { name: 'Mostarda', icon: '🧴' },
-      { name: 'Soja', icon: '🌱' },
+      { name: t('menu.allergens.gluten') || 'Glúten', icon: '🌾' },
+      { name: t('menu.allergens.leite') || 'Leite / Lactose', icon: '🥛' },
+      { name: t('menu.allergens.amendoim') || 'Amendoim', icon: '🥜' },
+      { name: t('menu.allergens.peixes') || 'Peixes', icon: '🐟' },
+      { name: t('menu.allergens.ovos') || 'Ovos', icon: '🥚' },
+      { name: t('menu.allergens.moluscos') || 'Moluscos', icon: '🐚' },
+      { name: t('menu.allergens.sulfitos') || 'Sulfitos', icon: '⚗️' },
+      { name: t('menu.allergens.oleoginosas') || 'Oleoginosas', icon: '🌰' },
+      { name: t('menu.allergens.mostarda') || 'Mostarda', icon: '🧴' },
+      { name: t('menu.allergens.soja') || 'Soja', icon: '🌱' },
     ]
   }
 ];
 
-function MenuItem({ name, allergens, price, description, color = 'var(--primary)' }) {
+function MenuItem({ name, allergens, price, description, color = 'var(--text-white)' }) {
   return (
     <div style={{ marginBottom: '20px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '15px' }}>
         <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: color, fontFamily: 'var(--font-body)' }}>
-          {name} <span style={{ marginLeft: '5px', opacity: 0.8, fontSize: '0.9rem' }}>{allergens}</span>
+          {name} <span style={{ marginLeft: '5px', opacity: 0.8, fontSize: '0.9rem', color: 'var(--text-gray)' }}>{allergens}</span>
         </h4>
         <span style={{ color: 'var(--primary)', fontWeight: 'bold', fontSize: '1.1rem', whiteSpace: 'nowrap' }}>
           {price}€
@@ -285,6 +287,8 @@ function MenuItem({ name, allergens, price, description, color = 'var(--primary)
 export default function MenuAccordion() {
   const [openIndex, setOpenIndex] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const { t } = useLanguage();
+  const menuData = getMenuData(t);
 
   return (
     <section id="menu" aria-label="Menu do restaurante" style={{ padding: '80px 0' }}>
@@ -386,7 +390,7 @@ export default function MenuAccordion() {
                           )}
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px 40px' }}>
                             {sub.items.map((item, ii) => (
-                              <MenuItem key={ii} {...item} color={category.name === 'Bebidas' ? 'var(--text-white)' : 'var(--primary)'} />
+                              <MenuItem key={ii} {...item} />
                             ))}
                           </div>
                         </div>
@@ -394,7 +398,7 @@ export default function MenuAccordion() {
                     ) : (
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px 40px' }}>
                         {category.items.map((item, ii) => (
-                          <MenuItem key={ii} {...item} color={category.name === 'Bebidas' ? 'var(--text-white)' : 'var(--primary)'} />
+                          <MenuItem key={ii} {...item} />
                         ))}
                       </div>
                     )}

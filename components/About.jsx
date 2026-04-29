@@ -22,10 +22,20 @@ const values = [
   },
 ];
 
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function About() {
+  const { t } = useLanguage();
+
+  const valuesData = [
+    { icon: <Heart size={32} />, key: 0 },
+    { icon: <Leaf size={32} />, key: 1 },
+    { icon: <Coffee size={32} />, key: 2 },
+  ];
+
   return (
-    <section id="sobre" aria-label="Sobre o Viriatus Brunch" style={{ padding: '100px 0 30px 0', overflow: 'hidden' }}>
-      <h2 className="section-title">A Nossa Essência</h2>
+    <section id="sobre" aria-label={t('about.aria_label')} style={{ padding: '100px 0 30px 0', overflow: 'hidden' }}>
+      <h2 className="section-title">{t('about.title')}</h2>
 
       <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '80px', alignItems: 'center' }}>
 
@@ -45,16 +55,16 @@ export default function About() {
               lineHeight: '1.2'
             }}
           >
-            O Melhor Brunch de Viseu!
+            {t('about.hero_title')}
           </h2>
 
           <p style={{ fontSize: '1.1rem', color: 'var(--text-white)', marginBottom: '25px', lineHeight: '1.8', opacity: 0.9 }}>
-            No centro de Viseu, a Viriatus Brunch é um espaço acolhedor que combina sabores criativos com ingredientes frescos e de qualidade. Todo o menu foi pensado para agradar a todos os gostos, num ambiente descontraído onde cada detalhe convida a desfrutar.
+            {t('about.text1')}
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px', color: 'var(--primary)' }}>
             <MapPin size={24} />
-            <span style={{ fontWeight: '500', letterSpacing: '1px' }}>VISEU, PORTUGAL</span>
+            <span style={{ fontWeight: '500', letterSpacing: '1px' }}>{t('about.location')}</span>
           </div>
         </motion.div>
 
@@ -75,7 +85,7 @@ export default function About() {
         >
           <Image
             src="/assets/images/about.jpeg"
-            alt="Ambiente Viriatus Brunch"
+            alt={t('about.img_alt')}
             fill
             style={{ objectFit: 'cover' }}
           />
@@ -100,33 +110,36 @@ export default function About() {
           padding: '0 5%'
         }}
       >
-        {values.map((value, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            style={{
-              padding: '40px',
-              backgroundColor: 'rgba(255,255,255,0.03)',
-              borderRadius: '20px',
-              border: '1px solid rgba(208,168,75,0.1)',
-              textAlign: 'center',
-              scrollSnapAlign: 'center'
-            }}
-          >
-            <div style={{ color: 'var(--primary)', marginBottom: '20px', display: 'inline-block' }}>
-              {value.icon}
-            </div>
-            <h3 style={{ fontSize: '1.4rem', color: 'var(--primary)', marginBottom: '15px', fontFamily: 'var(--font-heading)' }}>
-              {value.title}
-            </h3>
-            <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem', lineHeight: '1.6' }}>
-              {value.description}
-            </p>
-          </motion.div>
-        ))}
+        {valuesData.map((item, index) => {
+          const value = t(`about.values.${item.key}`);
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              style={{
+                padding: '40px',
+                backgroundColor: 'rgba(255,255,255,0.03)',
+                borderRadius: '20px',
+                border: '1px solid rgba(208,168,75,0.1)',
+                textAlign: 'center',
+                scrollSnapAlign: 'center'
+              }}
+            >
+              <div style={{ color: 'var(--primary)', marginBottom: '20px', display: 'inline-block' }}>
+                {item.icon}
+              </div>
+              <h3 style={{ fontSize: '1.4rem', color: 'var(--primary)', marginBottom: '15px', fontFamily: 'var(--font-heading)' }}>
+                {value.title}
+              </h3>
+              <p style={{ color: 'var(--text-gray)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                {value.description}
+              </p>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );

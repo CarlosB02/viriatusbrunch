@@ -45,9 +45,23 @@ const images = [
   { id: 34, src: '/assets/images/gallery/image00521.jpeg', alt: 'Espaço 10', category: 'ESPAÇO' },
 ];
 
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function Gallery() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('TODAS');
   const [visibleCount, setVisibleCount] = useState(6);
+
+  const tabs = [
+    { name: t('gallery.tabs.todas'), value: 'TODAS' },
+    { name: t('gallery.tabs.menus'), value: 'MENUS' },
+    { name: t('gallery.tabs.bebidas'), value: 'BEBIDAS' },
+    { name: t('gallery.tabs.sobremesas'), value: 'SOBREMESAS' },
+    { name: t('gallery.tabs.outros'), value: 'OUTROS' },
+    { name: t('gallery.tabs.marcar'), value: 'MARCAR' },
+    { name: t('gallery.tabs.espaco'), value: 'ESPAÇO' },
+    { name: t('gallery.tabs.tuas_fotos'), value: 'AS TUAS FOTOS' },
+  ];
 
   const filtered =
     activeTab === 'TODAS' ? images : images.filter((img) => img.category === activeTab);
@@ -64,13 +78,13 @@ export default function Gallery() {
   }, [activeTab]);
 
   return (
-    <section id="galeria" aria-label="Galeria Viriatus Brunch" style={{ paddingTop: '20px' }}>
-      <h2 className="section-title">O teu Viriatus</h2>
+    <section id="galeria" aria-label={t('gallery.aria_label')} style={{ paddingTop: '20px' }}>
+      <h2 className="section-title">{t('gallery.title')}</h2>
 
       {/* Tabs */}
       <div
         role="tablist"
-        aria-label="Categorias da galeria"
+        aria-label={t('gallery.aria_tabs') || "Categorias da galeria"}
         style={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -81,10 +95,10 @@ export default function Gallery() {
       >
         {tabs.map((tab) => (
           <button
-            key={tab}
+            key={tab.value}
             role="tab"
-            aria-selected={activeTab === tab}
-            onClick={() => setActiveTab(tab)}
+            aria-selected={activeTab === tab.value}
+            onClick={() => setActiveTab(tab.value)}
             style={{
               padding: '8px 20px',
               borderRadius: '50px',
@@ -92,18 +106,18 @@ export default function Gallery() {
               fontWeight: '600',
               letterSpacing: '1px',
               backgroundColor:
-                activeTab === tab
+                activeTab === tab.value
                   ? 'rgba(208,168,75,0.2)'
                   : 'rgba(255,255,255,0.05)',
-              color: activeTab === tab ? 'var(--primary)' : 'var(--text-white)',
+              color: activeTab === tab.value ? 'var(--primary)' : 'var(--text-white)',
               border:
-                activeTab === tab
+                activeTab === tab.value
                   ? '1px solid var(--primary)'
                   : '1px solid transparent',
               transition: 'all 0.3s',
             }}
           >
-            {tab}
+            {tab.name}
           </button>
         ))}
       </div>
@@ -151,7 +165,7 @@ export default function Gallery() {
           <motion.button
             whileHover={{ scale: 1.1 }}
             onClick={loadMore}
-            aria-label="Ver mais fotos"
+            aria-label={t('gallery.aria_more')}
             style={{
               width: '50px',
               height: '50px',
@@ -168,7 +182,7 @@ export default function Gallery() {
             <Plus size={24} aria-hidden="true" />
           </motion.button>
           <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem', marginTop: '10px' }}>
-            Mostrar mais
+            {t('gallery.load_more')}
           </p>
         </div>
       )}

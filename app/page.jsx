@@ -6,6 +6,11 @@ import MenuAccordion from '@/components/MenuAccordion';
 import Gallery from '@/components/Gallery';
 import Footer from '@/components/Footer';
 
+export const metadata = {
+  title: 'Viriatus Brunch Viseu | O Puro Prazer do Brunch',
+  description: 'Descubra o melhor brunch em Viseu no Viriatus Brunch. Menu completo com ovos benedict, panquecas, tostas e café de especialidade.',
+};
+
 export default function Home() {
   return (
     <>

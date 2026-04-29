@@ -1,7 +1,9 @@
-// Server Component
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin, Phone, ArrowUp } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Instagram = ({ size = 24, ...props }) => (
   <svg
@@ -24,6 +26,7 @@ const Instagram = ({ size = 24, ...props }) => (
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer
@@ -47,18 +50,18 @@ export default function Footer() {
         <div>
           <Image
             src="/assets/images/viriatus-brunch-logo.png"
-            alt="Viriatus Brunch Viseu - Logo Rodapé"
+            alt={t('footer.logo_alt') || "Viriatus Brunch Viseu - Logo Rodapé"}
             width={160}
             height={60}
             style={{ height: '60px', width: 'auto', marginBottom: '20px' }}
           />
           <p style={{ color: '#d1d1d1', fontSize: '0.95rem', lineHeight: '1.8' }}>
-            Inspirado em Viseu, criado para todos os dias. Sabores frescos, momentos simples.
+            {t('footer.tagline') || 'Inspirado em Viseu, criado para todos os dias. Sabores frescos, momentos simples.'}
           </p>
         </div>
 
         {/* Nav links */}
-        <nav aria-label="Links do rodapé">
+        <nav aria-label={t('footer.nav_aria') || "Links do rodapé"}>
           <h3
             style={{
               fontSize: '1.2rem',
@@ -71,24 +74,24 @@ export default function Footer() {
               marginTop: '0px'
             }}
           >
-            Tudo sobre nós
+            {t('footer.links_title') || 'Tudo sobre nós'}
           </h3>
           <ul style={{ display: 'grid', gap: '15px' }}>
             <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
               <a href="/#menu" style={{ color: '#d1d1d1', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                De volta ao Menu <ArrowUp size={14} style={{ color: 'var(--primary)' }} />
+                {t('footer.back_to_menu') || 'De volta ao Menu'} <ArrowUp size={14} style={{ color: 'var(--primary)' }} />
               </a>
             </li>
-            <li><a href="/sobre-nos" style={{ color: '#d1d1d1' }}>Sobre Nós</a></li>
-            <li><a href="/contactos" style={{ color: '#d1d1d1' }}>Contactos</a></li>
-            <li><a href="/#galeria" style={{ color: '#d1d1d1' }}>Galeria</a></li>
+            <li><a href="/sobre-nos" style={{ color: '#d1d1d1' }}>{t('navbar.sobre_nos')}</a></li>
+            <li><a href="/contactos" style={{ color: '#d1d1d1' }}>{t('navbar.contactos')}</a></li>
+            <li><a href="/#galeria" style={{ color: '#d1d1d1' }}>{t('navbar.galeria')}</a></li>
           </ul>
         </nav>
 
         {/* Contact */}
         <address
           id="contactos"
-          aria-label="Contactos e reservas"
+          aria-label={t('footer.contact_aria') || "Contactos e reservas"}
           style={{ fontStyle: 'normal' }}
         >
           <h3
@@ -103,7 +106,7 @@ export default function Footer() {
               marginTop: '0px'
             }}
           >
-            Reserva já
+            {t('footer.reserve_title') || 'Reserva já'}
           </h3>
           <ul style={{ display: 'grid', gap: '20px' }}>
             <li style={{ display: 'flex', alignItems: 'center', gap: '15px', color: '#d1d1d1' }}>
@@ -150,7 +153,7 @@ export default function Footer() {
           <a href="#menu" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>
             Viriatus Brunch
           </a>
-          . Todos os direitos reservados. | Desenvolvido por{' '}
+          . {t('footer.rights')} | {t('footer.developed_by') || 'Desenvolvido por'}{' '}
           <Link
             href="https://enimble.pt"
             target="_blank"

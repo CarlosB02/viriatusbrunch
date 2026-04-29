@@ -1,11 +1,15 @@
-// Server Component — renders on server for instant SEO indexing
+'use client';
+
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="home"
-      aria-label="Secção principal Viriatus Brunch"
+      aria-label={t('hero.aria_label') || "Secção principal Viriatus Brunch"}
       style={{
         height: '100vh',
         width: '100%',
@@ -23,7 +27,7 @@ export default function Hero() {
       {/* Background image via next/image for performance */}
       <Image
         src="/assets/images/hero-bg.jpeg"
-        alt="Viriatus Brunch Viseu - Mesa de brunch com pratos variados"
+        alt={t('hero.bg_alt') || "Viriatus Brunch Viseu - Mesa de brunch com pratos variados"}
         fill
         priority
         style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
@@ -49,7 +53,7 @@ export default function Hero() {
             fontFamily: 'var(--font-body)',
           }}
         >
-          O Puro Prazer do Brunch
+          {t('hero.subtitle')}
         </p>
         <h1
           style={{
@@ -66,7 +70,7 @@ export default function Hero() {
       {/* Scroll hint */}
       <a
         href="#menu"
-        aria-label="Ir para o menu"
+        aria-label={t('hero.aria_menu') || "Ir para o menu"}
         style={{
           position: 'absolute',
           bottom: '40px',
@@ -86,7 +90,7 @@ export default function Hero() {
             color: 'var(--primary)',
           }}
         >
-          Descobrir
+          {t('hero.cta_scroll') || 'Descobrir'}
         </p>
         <div
           style={{

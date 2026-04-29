@@ -3,20 +3,23 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
-const navLinks = [
-  { name: 'Início', href: '/' },
-  { name: 'Menu', href: '/#menu' },
-  { name: 'Galeria', href: '/galeria' },
-  { name: 'Sobre Nós', href: '/sobre-nos' },
-  { name: 'Contactos', href: '/contactos' },
+const getNavLinks = (t) => [
+  { name: t('navbar.inicio') || 'Início', href: '/' },
+  { name: t('navbar.menu') || 'Menu', href: '/#menu' },
+  { name: t('navbar.galeria') || 'Galeria', href: '/galeria' },
+  { name: t('navbar.sobre_nos') || 'Sobre Nós', href: '/sobre-nos' },
+  { name: t('navbar.contactos') || 'Contactos', href: '/contactos' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
+  const navLinks = getNavLinks(t);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -35,6 +38,62 @@ export default function Navbar() {
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
+
+  const LanguageSwitcher = () => (
+    <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginLeft: '10px' }}>
+      <button 
+        onClick={() => toggleLanguage('pt')}
+        style={{ 
+          backgroundColor: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          padding: '2px',
+          borderRadius: '4px',
+          transition: 'all 0.3s',
+          opacity: language === 'pt' ? 1 : 0.5,
+          transform: language === 'pt' ? 'scale(1.1)' : 'scale(1)',
+          filter: language === 'pt' ? 'none' : 'grayscale(100%)',
+          display: 'flex',
+          alignItems: 'center'
+        }}
+        title="Português"
+      >
+        <Image 
+          src="/assets/images/flag-pt.png" 
+          alt="Português" 
+          width={24} 
+          height={16}
+          style={{ borderRadius: '2px', objectFit: 'cover' }}
+        />
+      </button>
+      
+      <button 
+        onClick={() => toggleLanguage('en')}
+        style={{ 
+          backgroundColor: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          padding: '2px',
+          borderRadius: '4px',
+          transition: 'all 0.3s',
+          opacity: language === 'en' ? 1 : 0.5,
+          transform: language === 'en' ? 'scale(1.1)' : 'scale(1)',
+          filter: language === 'en' ? 'none' : 'grayscale(100%)',
+          display: 'flex',
+          alignItems: 'center'
+        }}
+        title="English"
+      >
+        <Image 
+          src="/assets/images/flag-en.png" 
+          alt="English" 
+          width={24} 
+          height={16}
+          style={{ borderRadius: '2px', objectFit: 'cover' }}
+        />
+      </button>
+    </div>
+  );
 
   return (
     <nav
@@ -95,21 +154,29 @@ export default function Navbar() {
             </a>
           </li>
         ))}
+        <li>
+          <LanguageSwitcher />
+        </li>
       </ul>
 
-      {/* Mobile Toggle */}
-      <button
-        className="mobile-toggle"
-        style={{ 
-          color: 'var(--primary)', 
-          zIndex: 60, // Above the overlay
-          position: 'relative'
-        }}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
-      >
-        {isOpen ? <X size={32} /> : <Menu size={32} />}
-      </button>
+      {/* Mobile Toggle & Language Switcher */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+        <div className="mobile-only" style={{ display: 'none' }}>
+           <LanguageSwitcher />
+        </div>
+        <button
+          className="mobile-toggle"
+          style={{ 
+            color: 'var(--primary)', 
+            zIndex: 60, // Above the overlay
+            position: 'relative'
+          }}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? t('navbar.fechar_menu') || 'Fechar menu' : t('navbar.abrir_menu') || 'Abrir menu'}
+        >
+          {isOpen ? <X size={32} /> : <Menu size={32} />}
+        </button>
+      </div>
 
       {/* Mobile Overlay */}
       <AnimatePresence>
@@ -157,9 +224,20 @@ export default function Navbar() {
                 </a>
               </motion.div>
             ))}
+            
+            {/* Language Switcher in Mobile Menu */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * navLinks.length }}
+              style={{ marginTop: '20px' }}
+            >
+              <LanguageSwitcher />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </nav>
   );
 }
+

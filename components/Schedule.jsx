@@ -1,17 +1,21 @@
-// Server Component
-import { Clock } from 'lucide-react';
+'use client';
 
-const hours = [
-  { day: 'Segunda-Feira', status: 'Encerrado', isOpen: true },
-  { day: 'Terça a Sábado', status: '10h às 18.30h', isOpen: true },
-  { day: 'Domingo e Feriados', status: '10h às 15h', isOpen: true },
-];
+import { Clock } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Schedule() {
+  const { t } = useLanguage();
+
+  const hours = [
+    { day: t('schedule.days.mon') || 'Segunda-Feira', status: t('schedule.closed') || 'Encerrado', isOpen: true },
+    { day: t('schedule.days.tue_sat') || 'Terça a Sábado', status: '10h às 18.30h', isOpen: true },
+    { day: t('schedule.days.sun_holidays') || 'Domingo e Feriados', status: '10h às 15h', isOpen: true },
+  ];
+
   return (
     <section
       id="horario"
-      aria-label="Horário de funcionamento"
+      aria-label={t('schedule.aria_label') || "Horário de funcionamento"}
       style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
     >
       <div
@@ -46,7 +50,7 @@ export default function Schedule() {
             whiteSpace: 'nowrap',
           }}
         >
-          <Clock size={16} aria-hidden="true" /> HORÁRIO
+          <Clock size={16} aria-hidden="true" /> {t('schedule.badge') || 'HORÁRIO'}
         </div>
 
         {/* Hours */}
@@ -86,7 +90,7 @@ export default function Schedule() {
             marginTop: '20px',
           }}
         >
-          *Informamos que a cozinha encerra 1h antes do fecho do estabelecimento
+          *{t('schedule.note') || 'Informamos que a cozinha encerra 1h antes do fecho do estabelecimento'}
         </p>
       </div>
     </section>

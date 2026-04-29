@@ -111,6 +111,9 @@ export const viewport = {
   maximumScale: 1,
 };
 
+import { LanguageProvider } from '@/context/LanguageContext';
+import LanguageModal from '@/components/LanguageModal';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-PT">
@@ -119,7 +122,10 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
         />
-        {children}
+        <LanguageProvider>
+          <LanguageModal />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
