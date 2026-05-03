@@ -5,8 +5,6 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
-const tabs = ['TODAS', 'MENUS', 'BEBIDAS', 'SOBREMESAS', 'OUTROS', 'MARCAR', 'ESPAÇO', 'AS TUAS FOTOS'];
-
 // Placeholder gallery images — substituir pelos caminhos reais em /public/assets/images/gallery/
 const images = [
   { id: 1, src: '/assets/images/gallery/BOWL ACAI 2.jpg', alt: 'Bowl de Açaí', category: 'MENUS' },
@@ -27,12 +25,6 @@ const images = [
   { id: 16, src: '/assets/images/gallery/SUMO DO DIA (1).jpg', alt: 'Sumo do Dia', category: 'BEBIDAS' },
   { id: 17, src: '/assets/images/gallery/SUMO DO DIA 2.jpg', alt: 'Sumo Natural', category: 'BEBIDAS' },
   { id: 18, src: '/assets/images/gallery/TOSTA MISTA.jpg', alt: 'Tosta Mista', category: 'MENUS' },
-  { id: 19, src: '/assets/images/gallery/gallery-01.jpg', alt: 'Viriatus 1', category: 'AS TUAS FOTOS' },
-  { id: 20, src: '/assets/images/gallery/gallery-02.jpg', alt: 'Viriatus 2', category: 'AS TUAS FOTOS' },
-  { id: 21, src: '/assets/images/gallery/gallery-03.jpg', alt: 'Viriatus 3', category: 'AS TUAS FOTOS' },
-  { id: 22, src: '/assets/images/gallery/gallery-04.jpg', alt: 'Viriatus 4', category: 'AS TUAS FOTOS' },
-  { id: 23, src: '/assets/images/gallery/gallery-05.jpg', alt: 'Viriatus 5', category: 'AS TUAS FOTOS' },
-  { id: 24, src: '/assets/images/gallery/gallery-06.jpg', alt: 'Viriatus 6', category: 'AS TUAS FOTOS' },
   { id: 25, src: '/assets/images/gallery/image00001.jpeg', alt: 'Espaço 1', category: 'ESPAÇO' },
   { id: 26, src: '/assets/images/gallery/image00002.jpeg', alt: 'Espaço 2', category: 'ESPAÇO' },
   { id: 27, src: '/assets/images/gallery/image00003.jpeg', alt: 'Espaço 3', category: 'ESPAÇO' },
@@ -57,10 +49,7 @@ export default function Gallery() {
     { name: t('gallery.tabs.menus'), value: 'MENUS' },
     { name: t('gallery.tabs.bebidas'), value: 'BEBIDAS' },
     { name: t('gallery.tabs.sobremesas'), value: 'SOBREMESAS' },
-    { name: t('gallery.tabs.outros'), value: 'OUTROS' },
-    { name: t('gallery.tabs.marcar'), value: 'MARCAR' },
     { name: t('gallery.tabs.espaco'), value: 'ESPAÇO' },
-    { name: t('gallery.tabs.tuas_fotos'), value: 'AS TUAS FOTOS' },
   ];
 
   const filtered =

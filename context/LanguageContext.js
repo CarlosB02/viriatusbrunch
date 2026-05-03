@@ -11,6 +11,17 @@ export function LanguageProvider({ children }) {
 
   // Load saved language or detect browser language
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const hasEnParam = params.get('lang') === 'en' || window.location.pathname.startsWith('/en');
+
+    if (hasEnParam) {
+      setLanguage('en');
+      localStorage.setItem('viriatus_lang', 'en');
+      document.documentElement.lang = 'en-US';
+      setShowModal(false);
+      return;
+    }
+
     const savedLang = localStorage.getItem('viriatus_lang');
     if (savedLang && (savedLang === 'pt' || savedLang === 'en')) {
       setLanguage(savedLang);

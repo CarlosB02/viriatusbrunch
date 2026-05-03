@@ -61,6 +61,9 @@ export const metadata = {
   alternates: {
     canonical: 'https://viriatusbrunch.pt',
   },
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 // Schema.org JSON-LD — Estruturado para Google (Restaurante)
@@ -113,11 +116,28 @@ export const viewport = {
 
 import { LanguageProvider } from '@/context/LanguageContext';
 import LanguageModal from '@/components/LanguageModal';
+import Script from 'next/script';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-PT">
       <body suppressHydrationWarning>
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-GJZE833Z8F"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GJZE833Z8F');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
@@ -130,3 +150,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

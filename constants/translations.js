@@ -226,6 +226,13 @@ export const translations = {
         oleoginosas: 'Oleoginosas',
         mostarda: 'Mostarda',
         soja: 'Soja'
+      },
+      not_found: {
+        badge: 'ERRO 404',
+        title: 'Esta página não está no menu!',
+        subtitle: 'Talvez tenhamos mudado a receita ou a página foi removida. Não fiques com fome, volta para o início.',
+        cta_home: 'VOLTAR AO INÍCIO',
+        cta_menu: 'VER O MENU'
       }
     }
   },
@@ -456,7 +463,15 @@ export const translations = {
         oleoginosas: 'Nuts',
         mostarda: 'Mustard',
         soja: 'Soy'
+      },
+      not_found: {
+        badge: 'ERROR 404',
+        title: "This page isn't on the menu!",
+        subtitle: 'Maybe we changed the recipe or the page was removed. Don’t stay hungry, go back to the homepage.',
+        cta_home: 'BACK TO HOME',
+        cta_menu: 'VIEW MENU'
       }
     }
   }
 };
+

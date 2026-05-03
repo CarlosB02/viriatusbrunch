@@ -30,7 +30,7 @@ export default function GaleriaClient() {
           margin: 0
         }}>
           <Image
-            src="/assets/images/gallery/gallery-01.jpg"
+            src="/assets/images/gallery/image00001.jpeg"
             alt={t('galeria_page.title') || "Galeria Viriatus Brunch"}
             fill
             priority
