@@ -7,19 +7,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
-const getNavLinks = (t) => [
-  { name: t('navbar.inicio') || 'Início', href: '/' },
-  { name: t('navbar.menu') || 'Menu', href: '/#menu' },
-  { name: t('navbar.galeria') || 'Galeria', href: '/galeria' },
-  { name: t('navbar.sobre_nos') || 'Sobre Nós', href: '/sobre-nos' },
-  { name: t('navbar.contactos') || 'Contactos', href: '/contactos' },
+const getNavLinks = (t, language) => [
+  { name: t('navbar.inicio') || 'Início', href: language === 'en' ? '/en' : '/' },
+  { name: t('navbar.menu') || 'Menu', href: language === 'en' ? '/en#menu' : '/#menu' },
+  { name: t('navbar.galeria') || 'Galeria', href: language === 'en' ? '/en/gallery' : '/galeria' },
+  { name: t('navbar.sobre_nos') || 'Sobre Nós', href: language === 'en' ? '/en/about' : '/sobre-nos' },
+  { name: t('navbar.contactos') || 'Contactos', href: language === 'en' ? '/en/contacts' : '/contactos' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
-  const navLinks = getNavLinks(t);
+  const navLinks = getNavLinks(t, language);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -138,7 +138,7 @@ export default function Navbar() {
       >
         {navLinks.map((link) => (
           <li key={link.name}>
-            <a
+            <Link
               href={link.href}
               style={{
                 fontSize: '0.9rem',
@@ -151,7 +151,7 @@ export default function Navbar() {
               onMouseLeave={(e) => (e.currentTarget.style.color = 'inherit')}
             >
               {link.name}
-            </a>
+            </Link>
           </li>
         ))}
         <li>
@@ -209,7 +209,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
               >
-                <a
+                <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
                   style={{ 
@@ -221,7 +221,7 @@ export default function Navbar() {
                   }}
                 >
                   {link.name}
-                </a>
+                </Link>
               </motion.div>
             ))}
             

@@ -58,9 +58,6 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: 'https://viriatusbrunch.pt',
-  },
   icons: {
     icon: '/icon.png',
   },

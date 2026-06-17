@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { translations } from '@/constants/translations';
 
 const LanguageContext = createContext();
@@ -8,6 +9,8 @@ const LanguageContext = createContext();
 export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState('pt');
   const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   // Load saved language or detect browser language
   useEffect(() => {
@@ -38,10 +41,32 @@ export function LanguageProvider({ children }) {
 
   const toggleLanguage = (lang) => {
     const newLang = lang || (language === 'pt' ? 'en' : 'pt');
+    if (newLang === language) {
+      setShowModal(false);
+      return;
+    }
+    
     setLanguage(newLang);
     localStorage.setItem('viriatus_lang', newLang);
     document.documentElement.lang = newLang === 'pt' ? 'pt-PT' : 'en-US';
     setShowModal(false);
+
+    let newPath = pathname;
+    if (newLang === 'en') {
+      if (pathname === '/') newPath = '/en';
+      else if (pathname === '/galeria') newPath = '/en/gallery';
+      else if (pathname === '/sobre-nos') newPath = '/en/about';
+      else if (pathname === '/contactos') newPath = '/en/contacts';
+    } else {
+      if (pathname === '/en') newPath = '/';
+      else if (pathname === '/en/gallery') newPath = '/galeria';
+      else if (pathname === '/en/about') newPath = '/sobre-nos';
+      else if (pathname === '/en/contacts') newPath = '/contactos';
+    }
+    
+    if (newPath !== pathname) {
+      router.push(newPath);
+    }
   };
 
   const t = (key) => {

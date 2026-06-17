@@ -26,7 +26,7 @@ const Instagram = ({ size = 24, ...props }) => (
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <footer
@@ -78,13 +78,13 @@ export default function Footer() {
           </h3>
           <ul style={{ display: 'grid', gap: '15px' }}>
             <li style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <a href="/#menu" style={{ color: '#d1d1d1', display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <Link href={language === 'en' ? "/en#menu" : "/#menu"} style={{ color: '#d1d1d1', display: 'flex', alignItems: 'center', gap: '5px' }}>
                 {t('footer.back_to_menu') || 'De volta ao Menu'} <ArrowUp size={14} style={{ color: 'var(--primary)' }} />
-              </a>
+              </Link>
             </li>
-            <li><a href="/sobre-nos" style={{ color: '#d1d1d1' }}>{t('navbar.sobre_nos')}</a></li>
-            <li><a href="/contactos" style={{ color: '#d1d1d1' }}>{t('navbar.contactos')}</a></li>
-            <li><a href="/#galeria" style={{ color: '#d1d1d1' }}>{t('navbar.galeria')}</a></li>
+            <li><Link href={language === 'en' ? "/en/about" : "/sobre-nos"} style={{ color: '#d1d1d1' }}>{t('navbar.sobre_nos')}</Link></li>
+            <li><Link href={language === 'en' ? "/en/contacts" : "/contactos"} style={{ color: '#d1d1d1' }}>{t('navbar.contactos')}</Link></li>
+            <li><Link href={language === 'en' ? "/en/gallery" : "/galeria"} style={{ color: '#d1d1d1' }}>{t('navbar.galeria')}</Link></li>
           </ul>
         </nav>
 
@@ -150,9 +150,9 @@ export default function Footer() {
       >
         <p style={{ color: '#d1d1d1', fontSize: '0.8rem' }}>
           © {year}{' '}
-          <a href="#menu" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>
+          <Link href={language === 'en' ? "/en#menu" : "#menu"} style={{ color: 'var(--primary)', fontWeight: 'bold' }}>
             Viriatus Brunch
-          </a>
+          </Link>
           . {t('footer.rights')} | {t('footer.developed_by') || 'Desenvolvido por'}{' '}
           <Link
             href="https://enimble.pt"
