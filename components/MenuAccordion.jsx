@@ -237,7 +237,7 @@ const getMenuData = (t) => [
     name: t('menu.categories.panquecas'),
     icon: <Dessert size={20} />,
     items: [
-      { name: 'Natura', allergens: '', price: '6', description: t('menu.desc.natura_panqueca') || 'Servido com Fruta Variada e Mel' },
+      { name: 'Natura', allergens: '🥛', price: '6', description: t('menu.desc.natura_panqueca') || 'Servido com Fruta Variada e Mel' },
       { name: 'Banoffee', allergens: '🌾🥛🥚', price: '6,5', description: t('menu.desc.banoffee_panqueca') || 'Creme Banoffee, Banana' },
       { name: 'Avelã', allergens: '🌾🥛🥚🥜', price: '6,5', description: t('menu.desc.avela_panqueca') || 'Creme de Avelã, Crumble de Amêndoa e Gelado de Baunilha' },
       { name: 'Pistachio', allergens: '🌾🥛🥜', price: '7,5', description: t('menu.desc.pistachio_panqueca') || 'Creme de Pistachio, Framboesa e Crumble de Pistachio' },
