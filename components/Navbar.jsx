@@ -18,12 +18,17 @@ const getNavLinks = (t, language) => [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isIframe, setIsIframe] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
   const navLinks = getNavLinks(t, language);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
+    
+    // Check if the site is loaded inside an iframe
+    setIsIframe(window.self !== window.top);
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -154,16 +159,20 @@ export default function Navbar() {
             </Link>
           </li>
         ))}
-        <li>
-          <LanguageSwitcher />
-        </li>
+        {!isIframe && (
+          <li>
+            <LanguageSwitcher />
+          </li>
+        )}
       </ul>
 
       {/* Mobile Toggle & Language Switcher */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-        <div className="mobile-only" style={{ display: 'none' }}>
-           <LanguageSwitcher />
-        </div>
+        {!isIframe && (
+          <div className="mobile-only" style={{ display: 'none' }}>
+             <LanguageSwitcher />
+          </div>
+        )}
         <button
           className="mobile-toggle"
           style={{ 
@@ -226,14 +235,16 @@ export default function Navbar() {
             ))}
             
             {/* Language Switcher in Mobile Menu */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * navLinks.length }}
-              style={{ marginTop: '20px' }}
-            >
-              <LanguageSwitcher />
-            </motion.div>
+            {!isIframe && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * navLinks.length }}
+                style={{ marginTop: '20px' }}
+              >
+                <LanguageSwitcher />
+              </motion.div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
