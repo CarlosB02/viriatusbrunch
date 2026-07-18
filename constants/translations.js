@@ -120,6 +120,7 @@ export const translations = {
         ovos: 'Ovos',
         menus: 'Menus',
         tacos: 'Tacos',
+        tacos_poke: 'Tacos e Poke',
         acompanhamentos: 'Acompanhamentos',
         partilhar: 'Para Partilhar',
         bebidas: 'Bebidas',
@@ -209,7 +210,11 @@ export const translations = {
         avela_panqueca: 'Creme de Avelã, Crumble de Amêndoa e Gelado de Baunilha',
         pistachio_panqueca: 'Creme de Pistachio, Framboesa e Crumble de Pistachio',
         red_velvet_panqueca: 'Massa Red Velvet, Creme Baunilha e Frutos Vermelhos',
-        royal_panqueca: 'Pasta de Abacate, Salmão Fumado, Ovos Escalfados e Molho Holandês'
+        royal_panqueca: 'Pasta de Abacate, Salmão Fumado, Ovos Escalfados e Molho Holandês',
+        poke_base: 'Base de Arroz, Pepino, Tomate Cherry, Pickles de Couve Roxa e Abacate',
+        salmao_poke: 'Salmão e Cream Cheese Aromatizado',
+        crispy_chicken_poke: 'Frango Panado',
+        gambas_poke: 'Gambas Salteadas'
       },
       note: {
         ovos: '(Opção em Tosta, Croissant ou Bagel)',
@@ -225,7 +230,11 @@ export const translations = {
         sulfitos: 'Sulfitos',
         oleoginosas: 'Oleoginosas',
         mostarda: 'Mostarda',
-        soja: 'Soja'
+        soja: 'Soja',
+        tremoco: 'Tremoço',
+        aipo: 'Aipo',
+        frutos_casca_rija: 'Frutos de Casca Rija',
+        crustaceos: 'Crustáceos'
       },
       not_found: {
         badge: 'ERRO 404',
@@ -357,6 +366,7 @@ export const translations = {
         ovos: 'Eggs',
         menus: 'Menus',
         tacos: 'Tacos',
+        tacos_poke: 'Tacos & Poke',
         acompanhamentos: 'Sides',
         partilhar: 'To Share',
         bebidas: 'Drinks',
@@ -446,7 +456,11 @@ export const translations = {
         avela_panqueca: 'Hazelnut Cream, Almond Crumble and Vanilla Ice Cream',
         pistachio_panqueca: 'Pistachio Cream, Raspberry and Pistachio Crumble',
         red_velvet_panqueca: 'Red Velvet Batter, Vanilla Cream and Red Fruits',
-        royal_panqueca: 'Avocado Paste, Smoked Salmon, Poached Eggs and Hollandaise Sauce'
+        royal_panqueca: 'Avocado Paste, Smoked Salmon, Poached Eggs and Hollandaise Sauce',
+        poke_base: 'Rice Base, Cucumber, Cherry Tomato, Red Cabbage Pickles and Avocado',
+        salmao_poke: 'Salmon and Flavored Cream Cheese',
+        crispy_chicken_poke: 'Breaded Chicken',
+        gambas_poke: 'Sautéed Prawns'
       },
       note: {
         ovos: '(Option on Toast, Croissant or Bagel)',
@@ -462,7 +476,11 @@ export const translations = {
         sulfitos: 'Sulphites',
         oleoginosas: 'Nuts',
         mostarda: 'Mustard',
-        soja: 'Soy'
+        soja: 'Soy',
+        tremoco: 'Lupin',
+        aipo: 'Celery',
+        frutos_casca_rija: 'Nuts',
+        crustaceos: 'Crustaceans'
       },
       not_found: {
         badge: 'ERROR 404',
