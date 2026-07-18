@@ -83,7 +83,7 @@ export function LanguageProvider({ children }) {
             if (fallbackValue && fallbackValue[fk]) {
                 fallbackValue = fallbackValue[fk];
             } else {
-                return key; // Return the key as last resort
+                return undefined; // Return undefined to allow JS || operator to use the fallback string
             }
         }
         return fallbackValue;
