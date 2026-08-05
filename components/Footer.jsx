@@ -146,9 +146,13 @@ export default function Footer() {
           paddingTop: '40px',
           borderTop: '1px solid rgba(255,255,255,0.05)',
           textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '10px'
         }}
       >
-        <p style={{ color: '#d1d1d1', fontSize: '0.8rem' }}>
+        <p style={{ color: '#d1d1d1', fontSize: '0.8rem', margin: 0 }}>
           © {year}{' '}
           <Link href={language === 'en' ? "/en#menu" : "#menu"} style={{ color: 'var(--primary)', fontWeight: 'bold' }}>
             Viriatus Brunch
@@ -163,6 +167,14 @@ export default function Footer() {
             E-Nimble
           </Link>
         </p>
+        <Link
+          href="https://www.livroreclamacoes.pt/Inicio/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: '#d1d1d1', fontSize: '0.8rem', opacity: 0.8, textDecoration: 'underline' }}
+        >
+          Livro de Reclamações
+        </Link>
       </div>
     </footer>
   );
