@@ -93,7 +93,7 @@ const schemaOrg = {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       opens: '10:00',
-      closes: '18:30',
+      closes: '17:30',
     },
     {
       '@type': 'OpeningHoursSpecification',

@@ -95,7 +95,7 @@ export default function ContactosClient() {
                 <h3 style={{ color: 'var(--primary)', marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <Clock size={18} /> {t('contactos.horario_brunch')}
                 </h3>
-                <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem' }}>{t('schedule.days.tue_sat')}: 10h às 18.30h</p>
+                <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem' }}>{t('schedule.days.tue_sat')}: 10h às 17:30h</p>
                 <p style={{ color: 'var(--text-gray)', fontSize: '0.9rem' }}>{t('schedule.days.sun_holidays')}: 10h às 15h</p>
                 <p style={{ color: 'var(--primary)', fontSize: '0.8rem', marginTop: '10px', fontStyle: 'italic' }}>{t('contactos.segunda_fechada')}</p>
               </div>

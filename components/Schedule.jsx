@@ -8,7 +8,7 @@ export default function Schedule() {
 
   const hours = [
     { day: t('schedule.days.mon') || 'Segunda-Feira', status: t('schedule.closed') || 'Encerrado', isOpen: true },
-    { day: t('schedule.days.tue_sat') || 'Terça a Sábado', status: '10h às 18.30h', isOpen: true },
+    { day: t('schedule.days.tue_sat') || 'Terça a Sábado', status: '10h às 17:30h', isOpen: true },
     { day: t('schedule.days.sun_holidays') || 'Domingo e Feriados', status: '10h às 15h', isOpen: true },
   ];
 
